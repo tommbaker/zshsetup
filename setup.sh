@@ -66,6 +66,15 @@ install_nerd_font() {
   echo "Nerd Font installed. Restart your terminal and set it as your terminal font."
 }
 
+install_oh_my_zsh() {
+  if [[ -d "$HOME/.oh-my-zsh" ]]; then
+    echo "oh-my-zsh already installed, skipping."
+    return
+  fi
+  echo "Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+}
+
 install_zshrc() {
   local src dest="$HOME/.zshrc"
   src="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.zshrc"
@@ -77,5 +86,6 @@ install_zshrc() {
   echo "Installed .zshrc to $dest"
 }
 
+install_oh_my_zsh
 install_zshrc
 install_nerd_font
