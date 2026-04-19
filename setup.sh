@@ -11,17 +11,19 @@ PACKAGES=(
   bat
   git
   zsh
-  neofetch
   ncdu
   btop
   curl
   unzip
 )
 
-# Packages that aren't available on every supported distro/release
-# (e.g. fastfetch isn't in Ubuntu 24.04 LTS). Installed best-effort.
+# Packages that aren't available on every supported distro/release.
+# Installed best-effort; missing ones do not abort the script.
+#   - fastfetch: absent from Ubuntu 24.04 LTS
+#   - neofetch:  removed from Debian 13 (trixie) after upstream was archived
 OPTIONAL_PACKAGES=(
   fastfetch
+  neofetch
 )
 
 if command -v apt >/dev/null; then
