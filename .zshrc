@@ -7,17 +7,7 @@ fi
 cat <<'EOF'
 Available tools & aliases:
   ls / l / ll   eza --icons -l --git    — long listing with icons + git status
-  la            eza -la --git           — same, including hidden files
-  lt / tree     eza --tree              — directory tree view
   cat           bat --paging=never      — syntax-highlighted file output
-  less          bat                     — paged syntax-highlighted viewer
-  eza           eza [flags]             — direct access to all eza options
-  bat           bat [file]              — direct access to all bat options
-  git           git [command]           — version control
-  pnpm          pnpm install / add …   — fast, disk-efficient npm alternative
-  nvm           nvm use 20             — switch Node.js versions
-  bun           bun run x.ts           — fast JS/TS runtime + toolkit
-  fastfetch     fastfetch              — pretty system summary
   ncdu          ncdu [path]            — interactive disk usage explorer
   btop          btop                   — interactive process/resource monitor
 EOF
@@ -125,7 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # eza — type: ls, l, ll, la, lt, tree
-alias ls="eza --icons -l"           # long list with icons
+alias ls="eza --icons -l --git"           # long list with icons
 alias l="eza -l --git"              # long list with git status
 alias ll="eza -l --git"             # same as l
 alias la="eza -la --git"            # include hidden files
