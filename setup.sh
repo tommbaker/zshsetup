@@ -66,6 +66,22 @@ install_nerd_font() {
   echo "Nerd Font installed. Restart your terminal and set it as your terminal font."
 }
 
+set_default_shell() {
+  local zsh_path
+  zsh_path="$(command -v zsh)"
+
+  if [[ "${SHELL:-}" == "$zsh_path" ]]; then
+    echo "Default shell is already zsh, skipping."
+    return
+  fi
+
+  if ! grep -qx "$zsh_path" /etc/shells 2>/dev/null; then
+    echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+  fi
+
+  chsh -s "$zsh_path" "$USER" || echo "Could not change default shell automatically; run: chsh -s $zsh_path"
+}
+
 install_oh_my_zsh() {
   if [[ -d "$HOME/.oh-my-zsh" ]]; then
     echo "oh-my-zsh already installed, skipping."
@@ -89,3 +105,4 @@ install_zshrc() {
 install_oh_my_zsh
 install_zshrc
 install_nerd_font
+set_default_shell
